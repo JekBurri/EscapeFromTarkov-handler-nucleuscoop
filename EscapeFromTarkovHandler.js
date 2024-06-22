@@ -1,7 +1,17 @@
+// Rights reserved to NucleusCoop
+// Handler made by JekBurri 2024-05-22
+// Thanks to Amands2Mello for the Controller mod :)
+// Game: Escape From Tarkov
+// Requirements:
+// - Game must be owned
+// - SPT mod must be installed
+// - Amands Controller mod must be installed
+// Works for both Keyboard and Mouse / Controller setups though controller setup requires you to press F12 in-game to enable controller support and choose which controller you want to use (0-4 for player 1-4)
+
 // Hub.Handler.Version = 1; 
-// Hub.Handler.Id = 
+// Hub.Handler.Id = ?
 // Hub.Maintainer.Name = "JekBurri";
-// Hub.Maintainer.Id = "";
+// Hub.Maintainer.Id = "??";
 
 // Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt", "Custom.dll", "dlllist.txt", "winmm.dll"];
 Game.FileSymlinkCopyInstead = ["nvngx_dlss.dll", "NVUnityPlugin.dll", "UnityCrashHandler64.exe", "UnityPlayer.dll"];
