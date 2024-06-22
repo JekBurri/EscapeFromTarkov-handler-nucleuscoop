@@ -1,0 +1,7 @@
+{
+    "name": "Escape from Tarkov",
+    "author": "YourName",
+    "version": "1.0",
+    "description": "Handler for running multiple instances of Escape from Tarkov using the Aki Launcher.",
+    "category": "FPS"
+}
