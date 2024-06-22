@@ -1,9 +1,9 @@
-// Hub.Handler.Version = 1; // Released at https://hub.splitscreen.me/ on Wed Apr 10 2024 06:16:47 GMT+0000 (Coordinated Universal Time).
-// Hub.Handler.Id = "DxWk5Q6uThnh3Bsrg";
-// Hub.Maintainer.Name = "jekburri";
+// Hub.Handler.Version = 1; 
+// Hub.Handler.Id = 
+// Hub.Maintainer.Name = "JekBurri";
 // Hub.Maintainer.Id = "";
 
-Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt", "Custom.dll", "dlllist.txt", "winmm.dll"];
+// Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt", "Custom.dll", "dlllist.txt", "winmm.dll"];
 Game.FileSymlinkCopyInstead = ["nvngx_dlss.dll", "NVUnityPlugin.dll", "UnityCrashHandler64.exe", "UnityPlayer.dll"];
 Game.UseGoldberg = false;
 Game.HandlerInterval = 100;
@@ -11,7 +11,8 @@ Game.SymlinkExe = false;
 Game.SymlinkGame = true;
 Game.SymlinkFolders = false;
 Game.KeepSymLinkOnExit = true;
-Game.ExecutableName = "Aki.Launcher.exe";
+Game.LauncherExe = "Aki.Launcher.exe"
+Game.ExecutableName = "EscapeFromTarkov.exe";
 Game.GUID = "Escape From Tarkov";
 Game.GameName = "Escape From Tarkov";
 Game.MaxPlayers = 4;
@@ -166,8 +167,8 @@ Game.ProtoInput.OnInputUnlocked = function() {
 // Function to monitor and update executable name
 Game.BeforeGameStart = function() {
   var playerNameCounter = 1;
-  var originalExecutableName = Game.ExecutableName;
   var gameExecutable = "EscapeFromTarkov.exe";
+  var launcherExecutable = "Aki.Launcher.exe";
 
   function updateExecutableName(player) {
     var processList = System.Diagnostics.Process.GetProcessesByName(gameExecutable.replace(".exe", ""));
@@ -182,6 +183,17 @@ Game.BeforeGameStart = function() {
     for (var i = 0; i < PlayerList.Count; i++) {
       var player = PlayerList[i];
       updateExecutableName(player);
+
+      if (playerNameCounter === PlayerList.Count) {
+        // All players have their game processes, split-screen the game
+        ProtoInput.LockInput();
+        ProtoInput.SplitScreen();
+        ProtoInput.UnlockInput();
+      } else {
+        // Not all players have their game processes, open the next launcher
+        System.Diagnostics.Process.Start(launcherExecutable);
+      }
     }
   }, 10000); // Adjust the timeout as needed to ensure the game process has started
 };
+
